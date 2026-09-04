@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
 <title>U-Save Tyre Co.</title>
 <meta name="description" content="U-Save Tyre Co — Nelson's largest selection of mag wheels, new & used tyres. Our name says it all.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -249,6 +250,61 @@
     letter-spacing:1.5px;color:var(--white);font-size:12px;margin-bottom:16px;text-transform:uppercase;
   }
   .footer-bottom .contact-line{font-size:11.5px;color:#B8B8B8;letter-spacing:0.5px;}
+
+  /* VISUALIZER SECTION */
+  #visualizer{background:var(--offwhite);}
+  #visualizer .viz-intro{text-align:center;max-width:640px;margin:0 auto 30px;}
+  #visualizer .viz-step-label{
+    font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--orange);
+    font-weight:700;margin-bottom:8px;
+  }
+  #visualizer .viz-upload-zone{
+    border:2px dashed var(--border);border-radius:8px;padding:34px 20px;text-align:center;
+    cursor:pointer;transition:all .15s;background:#fff;margin-bottom:26px;
+  }
+  #visualizer .viz-upload-zone:hover, #visualizer .viz-upload-zone.dragover{border-color:var(--orange);background:#fff8f4;}
+  #visualizer .viz-upload-zone p{color:var(--muted);font-size:13px;margin-top:8px;}
+  #visualizer .viz-upload-zone .viz-icon{font-size:28px;}
+  #visualizer .viz-file-input{display:none;}
+  #visualizer .viz-wheel-picker{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:30px;}
+  #visualizer .viz-wheel-option{
+    width:78px;height:78px;background:#fff;border:2px solid var(--border);border-radius:8px;
+    display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .15s;padding:8px;
+  }
+  #visualizer .viz-wheel-option:hover{border-color:#999;}
+  #visualizer .viz-wheel-option.active{border-color:var(--orange);background:#fff5f0;}
+  #visualizer .viz-wheel-option svg{width:100%;height:100%;}
+  #visualizer .viz-stage-wrap{
+    position:relative;background:#eee;border-radius:8px;overflow:hidden;
+    min-height:300px;display:flex;align-items:center;justify-content:center;
+    border:1px solid var(--border);
+  }
+  #visualizer .viz-stage-wrap.empty{color:#999;font-size:13px;}
+  #visualizer .viz-car-photo{max-width:100%;max-height:60vh;display:block;user-select:none;pointer-events:none;}
+  #visualizer .viz-wheel-overlay{position:absolute;top:100px;left:100px;width:130px;height:130px;cursor:move;touch-action:none;}
+  #visualizer .viz-wheel-overlay svg{width:100%;height:100%;display:block;filter:drop-shadow(0 4px 10px rgba(0,0,0,.4));}
+  #visualizer .viz-resize-handle{
+    position:absolute;bottom:-6px;right:-6px;width:18px;height:18px;
+    background:var(--orange);border:2px solid #fff;border-radius:50%;cursor:nwse-resize;
+  }
+  #visualizer .viz-rotate-handle{
+    position:absolute;top:-26px;left:50%;transform:translateX(-50%);
+    width:16px;height:16px;background:#fff;border:2px solid var(--orange);border-radius:50%;cursor:grab;
+  }
+  #visualizer .viz-rotate-handle::after{
+    content:'';position:absolute;top:16px;left:50%;width:1px;height:14px;
+    background:var(--orange);transform:translateX(-50%);
+  }
+  #visualizer .viz-controls-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px;justify-content:center;}
+  #visualizer .viz-btn{
+    background:#fff;color:#333;border:1px solid var(--border);border-radius:6px;
+    padding:10px 18px;font-size:13px;cursor:pointer;transition:all .15s;font-family:'Work Sans',sans-serif;
+  }
+  #visualizer .viz-btn:hover{background:#f3f3f3;}
+  #visualizer .viz-btn.primary{background:var(--orange);color:#fff;border-color:var(--orange);}
+  #visualizer .viz-btn.primary:hover{background:#d9541f;}
+  #visualizer .viz-btn:disabled{opacity:.4;cursor:not-allowed;}
+  #visualizer .viz-hint{color:var(--muted);font-size:12px;margin-top:14px;text-align:center;}
 </style>
 </head>
 <body>
@@ -263,6 +319,7 @@
     </div>
     <img src="usave_logo.webp" alt="U-Save Tyre Co." class="logo-img">
     <div class="nav-links">
+      <a href="#visualizer">Try On Your Car</a>
       <a href="#alignment">Wheel Alignment</a>
       <a href="#tips">Tips</a>
       <a href="#contact">Contact</a>
@@ -565,6 +622,69 @@
   </div>
 </section>
 
+<section id="visualizer">
+  <div class="wrap">
+    <div class="section-heading">Try It On Your Car</div>
+    <div class="viz-intro">
+      <p>Upload a photo of your car and drag one of our mag wheel styles into place to get an idea of how it'll look before you buy.</p>
+    </div>
+
+    <div class="viz-step-label">Step 1 &mdash; Upload Your Car Photo</div>
+    <div class="viz-upload-zone" id="viz-upload-zone">
+      <div class="viz-icon">&#128247;</div>
+      <p><strong>Click to upload</strong> or drag a photo here</p>
+    </div>
+    <input type="file" id="viz-file-input" class="viz-file-input" accept="image/*">
+
+    <div class="viz-step-label">Step 2 &mdash; Pick A Wheel Design</div>
+    <div class="viz-wheel-picker" id="viz-wheel-picker">
+
+      <div class="viz-wheel-option active" data-wheel="classic5">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <defs><radialGradient id="vg1" cx="40%" cy="35%" r="70%"><stop offset="0%" stop-color="#f5f5f5"/><stop offset="55%" stop-color="#c9c9c9"/><stop offset="100%" stop-color="#8a8a8a"/></radialGradient></defs>
+          <circle cx="100" cy="100" r="96" fill="#1a1a1a"/><circle cx="100" cy="100" r="92" fill="url(#vg1)"/><circle cx="100" cy="100" r="70" fill="#1a1a1a"/>
+          <g fill="url(#vg1)"><path d="M100 40 L118 92 L100 100 L82 92 Z" transform="rotate(0 100 100)"/><path d="M100 40 L118 92 L100 100 L82 92 Z" transform="rotate(72 100 100)"/><path d="M100 40 L118 92 L100 100 L82 92 Z" transform="rotate(144 100 100)"/><path d="M100 40 L118 92 L100 100 L82 92 Z" transform="rotate(216 100 100)"/><path d="M100 40 L118 92 L100 100 L82 92 Z" transform="rotate(288 100 100)"/></g>
+          <circle cx="100" cy="100" r="24" fill="url(#vg1)"/><circle cx="100" cy="100" r="24" fill="none" stroke="#1a1a1a" stroke-width="2"/><circle cx="100" cy="100" r="6" fill="#1a1a1a"/>
+        </svg>
+      </div>
+      <div class="viz-wheel-option" data-wheel="mesh">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <defs><radialGradient id="vg2" cx="40%" cy="35%" r="70%"><stop offset="0%" stop-color="#fdfdfd"/><stop offset="60%" stop-color="#cfcfcf"/><stop offset="100%" stop-color="#8f8f8f"/></radialGradient></defs>
+          <circle cx="100" cy="100" r="96" fill="#1a1a1a"/><circle cx="100" cy="100" r="92" fill="url(#vg2)"/><circle cx="100" cy="100" r="70" fill="#1a1a1a"/>
+          <g stroke="url(#vg2)" stroke-width="7" fill="none"><line x1="130.0" y1="100.0" x2="163.9" y2="123.3"/><line x1="126.0" y1="115.0" x2="143.7" y2="152.1"/><line x1="115.0" y1="126.0" x2="111.7" y2="167.0"/><line x1="100.0" y1="130.0" x2="76.7" y2="163.9"/><line x1="85.0" y1="126.0" x2="47.9" y2="143.7"/><line x1="74.0" y1="115.0" x2="33.0" y2="111.7"/><line x1="70.0" y1="100.0" x2="36.1" y2="76.7"/><line x1="74.0" y1="85.0" x2="56.3" y2="47.9"/><line x1="85.0" y1="74.0" x2="88.3" y2="33.0"/><line x1="100.0" y1="70.0" x2="123.3" y2="36.1"/><line x1="115.0" y1="74.0" x2="152.1" y2="56.3"/><line x1="126.0" y1="85.0" x2="167.0" y2="88.3"/></g>
+          <circle cx="100" cy="100" r="26" fill="url(#vg2)"/><circle cx="100" cy="100" r="26" fill="none" stroke="#1a1a1a" stroke-width="2"/><circle cx="100" cy="100" r="7" fill="#1a1a1a"/>
+        </svg>
+      </div>
+      <div class="viz-wheel-option" data-wheel="sport10">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <defs><radialGradient id="vg3" cx="40%" cy="35%" r="70%"><stop offset="0%" stop-color="#e8e8e8"/><stop offset="55%" stop-color="#a8a8a8"/><stop offset="100%" stop-color="#555"/></radialGradient></defs>
+          <circle cx="100" cy="100" r="96" fill="#1a1a1a"/><circle cx="100" cy="100" r="92" fill="url(#vg3)"/><circle cx="100" cy="100" r="68" fill="#1a1a1a"/>
+          <g fill="url(#vg3)"><path d="M100 36 L107 88 L100 96 L93 88 Z" transform="rotate(0 100 100)"/><path d="M100 36 L107 88 L100 96 L93 88 Z" transform="rotate(36 100 100)"/><path d="M100 36 L107 88 L100 96 L93 88 Z" transform="rotate(72 100 100)"/><path d="M100 36 L107 88 L100 96 L93 88 Z" transform="rotate(108 100 100)"/><path d="M100 36 L107 88 L100 96 L93 88 Z" transform="rotate(144 100 100)"/><path d="M100 36 L107 88 L100 96 L93 88 Z" transform="rotate(180 100 100)"/><path d="M100 36 L107 88 L100 96 L93 88 Z" transform="rotate(216 100 100)"/><path d="M100 36 L107 88 L100 96 L93 88 Z" transform="rotate(252 100 100)"/><path d="M100 36 L107 88 L100 96 L93 88 Z" transform="rotate(288 100 100)"/><path d="M100 36 L107 88 L100 96 L93 88 Z" transform="rotate(324 100 100)"/></g>
+          <circle cx="100" cy="100" r="22" fill="url(#vg3)"/><circle cx="100" cy="100" r="22" fill="none" stroke="#1a1a1a" stroke-width="2"/><circle cx="100" cy="100" r="6" fill="#1a1a1a"/>
+        </svg>
+      </div>
+      <div class="viz-wheel-option" data-wheel="deepdish">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <defs><radialGradient id="vg4" cx="40%" cy="35%" r="75%"><stop offset="0%" stop-color="#fff"/><stop offset="45%" stop-color="#d8d8d8"/><stop offset="80%" stop-color="#9a9a9a"/><stop offset="100%" stop-color="#666"/></radialGradient></defs>
+          <circle cx="100" cy="100" r="96" fill="#111"/><circle cx="100" cy="100" r="93" fill="url(#vg4)"/><circle cx="100" cy="100" r="60" fill="#1a1a1a"/>
+          <g fill="url(#vg4)"><path d="M100 46 L112 90 L100 98 L88 90 Z"/><path d="M100 46 L112 90 L100 98 L88 90 Z" transform="rotate(60 100 100)"/><path d="M100 46 L112 90 L100 98 L88 90 Z" transform="rotate(120 100 100)"/><path d="M100 46 L112 90 L100 98 L88 90 Z" transform="rotate(180 100 100)"/><path d="M100 46 L112 90 L100 98 L88 90 Z" transform="rotate(240 100 100)"/><path d="M100 46 L112 90 L100 98 L88 90 Z" transform="rotate(300 100 100)"/></g>
+          <circle cx="100" cy="100" r="20" fill="url(#vg4)"/><circle cx="100" cy="100" r="20" fill="none" stroke="#1a1a1a" stroke-width="2"/><circle cx="100" cy="100" r="5" fill="#1a1a1a"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="viz-step-label">Step 3 &mdash; Position It</div>
+    <div class="viz-stage-wrap empty" id="viz-stage-wrap">
+      Upload a photo above to get started
+    </div>
+    <div class="viz-controls-row">
+      <button class="viz-btn" id="viz-reset-btn" disabled>Reset Position</button>
+      <button class="viz-btn primary" id="viz-download-btn" disabled>Download Image</button>
+    </div>
+    <p class="viz-hint">Drag the wheel to move it &middot; drag the corner dot to resize &middot; drag the top dot to rotate</p>
+  </div>
+</section>
+
 <div class="dark-section" id="alignment">
   <div class="wrap-wide">
     <h2>Why is wheel alignment important?</h2>
@@ -685,5 +805,195 @@
     if(e.key === 'Escape'){ closeLightbox(); }
   });
 </script>
+
+<script>
+// ---------- Wheel visualizer ----------
+(function(){
+  const wheelOptions = document.querySelectorAll('#viz-wheel-picker .viz-wheel-option');
+  const uploadZone = document.getElementById('viz-upload-zone');
+  const fileInput = document.getElementById('viz-file-input');
+  const stageWrap = document.getElementById('viz-stage-wrap');
+  const resetBtn = document.getElementById('viz-reset-btn');
+  const downloadBtn = document.getElementById('viz-download-btn');
+  let vizOverlayEl = null;
+  let vizCarImgEl = null;
+  let vizSelectedSvg = wheelOptions[0].querySelector('svg').outerHTML;
+
+  wheelOptions.forEach(opt => {
+    opt.addEventListener('click', () => {
+      wheelOptions.forEach(o => o.classList.remove('active'));
+      opt.classList.add('active');
+      vizSelectedSvg = opt.querySelector('svg').outerHTML;
+      if (vizOverlayEl) {
+        const inner = vizOverlayEl.querySelector('.viz-svg-inner');
+        if (inner) inner.innerHTML = vizSelectedSvg;
+      }
+    });
+  });
+
+  uploadZone.addEventListener('click', () => fileInput.click());
+  uploadZone.addEventListener('dragover', e => { e.preventDefault(); uploadZone.classList.add('dragover'); });
+  uploadZone.addEventListener('dragleave', () => uploadZone.classList.remove('dragover'));
+  uploadZone.addEventListener('drop', e => {
+    e.preventDefault();
+    uploadZone.classList.remove('dragover');
+    if (e.dataTransfer.files[0]) vizLoadPhoto(e.dataTransfer.files[0]);
+  });
+  fileInput.addEventListener('change', e => {
+    if (e.target.files[0]) vizLoadPhoto(e.target.files[0]);
+  });
+
+  function vizLoadPhoto(file) {
+    const reader = new FileReader();
+    reader.onload = e => {
+      stageWrap.classList.remove('empty');
+      stageWrap.innerHTML = '';
+      vizCarImgEl = document.createElement('img');
+      vizCarImgEl.className = 'viz-car-photo';
+      vizCarImgEl.src = e.target.result;
+      stageWrap.appendChild(vizCarImgEl);
+      vizCarImgEl.onload = () => {
+        vizAddOverlay();
+        resetBtn.disabled = false;
+        downloadBtn.disabled = false;
+      };
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function vizAddOverlay() {
+    if (vizOverlayEl) vizOverlayEl.remove();
+    vizOverlayEl = document.createElement('div');
+    vizOverlayEl.className = 'viz-wheel-overlay';
+    vizOverlayEl.style.top = '90px';
+    vizOverlayEl.style.left = '90px';
+    vizOverlayEl.style.width = '130px';
+    vizOverlayEl.style.height = '130px';
+    vizOverlayEl.style.transform = 'rotate(0deg)';
+
+    const inner = document.createElement('div');
+    inner.className = 'viz-svg-inner';
+    inner.innerHTML = vizSelectedSvg;
+    inner.style.width = '100%';
+    inner.style.height = '100%';
+    vizOverlayEl.appendChild(inner);
+
+    const resizeHandle = document.createElement('div');
+    resizeHandle.className = 'viz-resize-handle';
+    vizOverlayEl.appendChild(resizeHandle);
+
+    const rotateHandle = document.createElement('div');
+    rotateHandle.className = 'viz-rotate-handle';
+    vizOverlayEl.appendChild(rotateHandle);
+
+    stageWrap.appendChild(vizOverlayEl);
+    vizMakeDraggable(vizOverlayEl, resizeHandle, rotateHandle);
+  }
+
+  resetBtn.addEventListener('click', () => { if (vizCarImgEl) vizAddOverlay(); });
+
+  function vizMakeDraggable(el, resizeHandle, rotateHandle) {
+    let mode = null;
+    let startX, startY, startLeft, startTop, startW, startAngle, centerX, centerY, startPointerAngle;
+
+    function getAngle() {
+      const t = el.style.transform || '';
+      const m = t.match(/rotate\\(([-\\d.]+)deg\\)/);
+      return m ? parseFloat(m[1]) : 0;
+    }
+
+    el.addEventListener('pointerdown', e => {
+      if (e.target === resizeHandle || e.target === rotateHandle) return;
+      mode = 'move';
+      startX = e.clientX; startY = e.clientY;
+      startLeft = parseFloat(el.style.left); startTop = parseFloat(el.style.top);
+      el.setPointerCapture(e.pointerId);
+    });
+    resizeHandle.addEventListener('pointerdown', e => {
+      e.stopPropagation();
+      mode = 'resize';
+      startX = e.clientX;
+      startW = parseFloat(el.style.width);
+      resizeHandle.setPointerCapture(e.pointerId);
+    });
+    rotateHandle.addEventListener('pointerdown', e => {
+      e.stopPropagation();
+      mode = 'rotate';
+      const rect = el.getBoundingClientRect();
+      centerX = rect.left + rect.width/2;
+      centerY = rect.top + rect.height/2;
+      startAngle = getAngle();
+      startPointerAngle = Math.atan2(e.clientY - centerY, e.clientX - centerX) * 180/Math.PI;
+      rotateHandle.setPointerCapture(e.pointerId);
+    });
+
+    function onMove(e) {
+      if (mode === 'move') {
+        const dx = e.clientX - startX, dy = e.clientY - startY;
+        el.style.left = (startLeft + dx) + 'px';
+        el.style.top = (startTop + dy) + 'px';
+      } else if (mode === 'resize') {
+        const dx = e.clientX - startX;
+        const newSize = Math.max(40, startW + dx);
+        el.style.width = newSize + 'px';
+        el.style.height = newSize + 'px';
+      } else if (mode === 'rotate') {
+        const currentPointerAngle = Math.atan2(e.clientY - centerY, e.clientX - centerX) * 180/Math.PI;
+        const delta = currentPointerAngle - startPointerAngle;
+        el.style.transform = `rotate(${startAngle + delta}deg)`;
+      }
+    }
+    function onUp() { mode = null; }
+
+    el.addEventListener('pointermove', onMove);
+    el.addEventListener('pointerup', onUp);
+    resizeHandle.addEventListener('pointermove', onMove);
+    resizeHandle.addEventListener('pointerup', onUp);
+    rotateHandle.addEventListener('pointermove', onMove);
+    rotateHandle.addEventListener('pointerup', onUp);
+  }
+
+  downloadBtn.addEventListener('click', () => {
+    if (!vizCarImgEl || !vizOverlayEl) return;
+    const canvas = document.createElement('canvas');
+    const imgRect = vizCarImgEl.getBoundingClientRect();
+    const scaleX = vizCarImgEl.naturalWidth / imgRect.width;
+    const scaleY = vizCarImgEl.naturalHeight / imgRect.height;
+
+    canvas.width = vizCarImgEl.naturalWidth;
+    canvas.height = vizCarImgEl.naturalHeight;
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(vizCarImgEl, 0, 0, canvas.width, canvas.height);
+
+    const wheelRect = vizOverlayEl.getBoundingClientRect();
+    const wx = (wheelRect.left - imgRect.left) * scaleX;
+    const wy = (wheelRect.top - imgRect.top) * scaleY;
+    const ww = wheelRect.width * scaleX;
+    const wh = wheelRect.height * scaleY;
+    const t = vizOverlayEl.style.transform || '';
+    const m = t.match(/rotate\\(([-\\d.]+)deg\\)/);
+    const angle = m ? parseFloat(m[1]) : 0;
+
+    const svgString = new XMLSerializer().serializeToString(vizOverlayEl.querySelector('svg'));
+    const svgBlob = new Blob([svgString], {type: 'image/svg+xml'});
+    const url = URL.createObjectURL(svgBlob);
+    const wheelImg = new Image();
+    wheelImg.onload = () => {
+      ctx.save();
+      ctx.translate(wx + ww/2, wy + wh/2);
+      ctx.rotate(angle * Math.PI/180);
+      ctx.drawImage(wheelImg, -ww/2, -wh/2, ww, wh);
+      ctx.restore();
+      URL.revokeObjectURL(url);
+      const link = document.createElement('a');
+      link.download = 'my-car-new-wheels.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    };
+    wheelImg.src = url;
+  });
+})();
+</script>
+
 </body>
 </html>
