@@ -46,14 +46,23 @@
   .nav-links a.cta:hover{background:#ffc933;}
   @media(max-width:900px){.nav-links{display:none;}}
 
-  /* HERO */
+  /* HERO — rotating photo background */
   .hero{
-    display:grid;grid-template-columns:1.1fr 1fr;min-height:640px;
+    position:relative;min-height:640px;display:flex;align-items:center;
+    overflow:hidden;background:var(--charcoal);
   }
-  @media(max-width:900px){.hero{grid-template-columns:1fr;}}
+  .hero-slide{
+    position:absolute;inset:0;background-size:cover;background-position:center 40%;
+    opacity:0;transition:opacity 1.6s ease;
+  }
+  .hero-slide.active{opacity:1;}
+  .hero::after{
+    content:'';position:absolute;inset:0;z-index:1;
+    background:linear-gradient(100deg, rgba(15,14,13,.92) 0%, rgba(15,14,13,.78) 32%, rgba(15,14,13,.35) 60%, rgba(15,14,13,.55) 100%);
+  }
   .hero-copy{
-    background:var(--charcoal);color:var(--white);
-    padding:80px 60px;display:flex;flex-direction:column;justify-content:center;
+    position:relative;z-index:2;color:var(--white);
+    padding:80px 60px;max-width:640px;
   }
   .hero-copy .tagcode{
     font-family:'Barlow',sans-serif;font-weight:800;font-size:13px;letter-spacing:2px;
@@ -62,16 +71,16 @@
   .hero-copy h1{
     font-size:clamp(38px,5vw,58px);margin-bottom:24px;color:var(--white);
   }
-  .hero-copy p{color:#c9c5ba;font-size:17px;max-width:440px;margin-bottom:34px;}
+  .hero-copy p{color:#e4e0d8;font-size:17px;max-width:440px;margin-bottom:34px;}
   .btn{
     display:inline-block;background:var(--yellow);color:var(--charcoal);
     padding:15px 30px;font-weight:800;font-size:13.5px;text-transform:uppercase;
     letter-spacing:0.6px;border-radius:2px;border:none;cursor:pointer;font-family:'Barlow',sans-serif;
   }
   .btn:hover{background:#ffc933;}
-  .btn.ghost{background:transparent;border:2px solid #444;color:#fff;margin-left:12px;}
-  .btn.ghost:hover{border-color:#666;}
-  .hero-photo{background-size:cover;background-position:center 35%;min-height:320px;}
+  .btn.ghost{background:transparent;border:2px solid rgba(255,255,255,.55);color:#fff;margin-left:12px;}
+  .btn.ghost:hover{border-color:#fff;}
+  @media(max-width:700px){.hero-copy{padding:60px 24px;max-width:100%;}}
 
   /* SECTIONS */
   section{padding:90px 0;}
@@ -215,7 +224,13 @@
   </div>
 </header>
 
-<div class="hero">
+<div class="hero" id="hero-rotator">
+  <div class="hero-slide active" style="background-image:url('hero_2.jpg');"></div>
+  <div class="hero-slide" style="background-image:url('hero_11.jpg');"></div>
+  <div class="hero-slide" style="background-image:url('hero_9.jpg');"></div>
+  <div class="hero-slide" style="background-image:url('hero_5.jpg');"></div>
+  <div class="hero-slide" style="background-image:url('hero_3.jpg');"></div>
+  <div class="hero-slide" style="background-image:url('hero_8.jpg');"></div>
   <div class="hero-copy">
     <div class="tagcode">NELSON &amp; WAIKATO — EST. 25+ YEARS</div>
     <h1 class="display">Tyres and mags done right, the first time</h1>
@@ -225,7 +240,6 @@
       <a href="#gallery" class="btn ghost">See Our Work</a>
     </div>
   </div>
-  <div class="hero-photo" style="background-image:url('hero_clean.jpg');"></div>
 </div>
 
 <section id="about">
@@ -582,6 +596,20 @@ const vizWheelDesigns = [
     };
     wheelImg.src = url;
   });
+})();
+  // ---------- Hero photo rotator ----------
+(function(){
+  const slides = document.querySelectorAll('#hero-rotator .hero-slide');
+  if (slides.length < 2) return;
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReducedMotion) return; // leave first slide static, no rotation
+
+  let current = 0;
+  setInterval(() => {
+    slides[current].classList.remove('active');
+    current = (current + 1) % slides.length;
+    slides[current].classList.add('active');
+  }, 5000);
 })();
 </script>
 
