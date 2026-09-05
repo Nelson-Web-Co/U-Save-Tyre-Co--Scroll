@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>U-Save Tyre Co. — Tyres, Alloys &amp; Alignment, Nelson</title>
+<meta name="description" content="Nelson's largest range of tyres and mag wheels. New, used, and everything in between — with straight-up advice from a team that's been doing this for 25+ years.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --concrete:#F4F2ED;
+    --charcoal:#0F0E0D;
+    --yellow:#F2622A;
+    --steel:#0F0E0D;
+    --tread:#8C887F;
+    --white:#FFFFFF;
+    --line:#D8D4CA;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--concrete);color:var(--charcoal);
+    font-family:'Barlow',sans-serif;font-size:16px;line-height:1.6;
+  }
+  .display{font-family:'Archivo Black',sans-serif;text-transform:uppercase;line-height:1.02;}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 28px;}
+  strong{font-weight:700;}
+
+  /* NAV */
+  header.site-nav{
+    background:var(--charcoal);padding:0 28px;position:sticky;top:0;z-index:100;
+  }
+  .nav-inner{max-width:1160px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:76px;}
+  .nav-inner img{height:34px;filter:brightness(0) invert(1);}
+  .nav-links{display:flex;gap:2px;}
+  .nav-links a{
+    color:#e8e6e0;font-size:13.5px;font-weight:600;padding:12px 16px;
+    text-transform:uppercase;letter-spacing:0.4px;transition:background .15s;
+  }
+  .nav-links a:hover{background:rgba(255,255,255,.08);}
+  .nav-links a.cta{background:var(--yellow);color:var(--charcoal);border-radius:2px;margin-left:8px;}
+  .nav-links a.cta:hover{background:#ffc933;}
+  @media(max-width:900px){.nav-links{display:none;}}
+
+  /* HERO */
+  .hero{
+    display:grid;grid-template-columns:1.1fr 1fr;min-height:640px;
+  }
+  @media(max-width:900px){.hero{grid-template-columns:1fr;}}
+  .hero-copy{
+    background:var(--charcoal);color:var(--white);
+    padding:80px 60px;display:flex;flex-direction:column;justify-content:center;
+  }
+  .hero-copy .tagcode{
+    font-family:'Barlow',sans-serif;font-weight:800;font-size:13px;letter-spacing:2px;
+    color:var(--yellow);margin-bottom:22px;
+  }
+  .hero-copy h1{
+    font-size:clamp(38px,5vw,58px);margin-bottom:24px;color:var(--white);
+  }
+  .hero-copy p{color:#c9c5ba;font-size:17px;max-width:440px;margin-bottom:34px;}
+  .btn{
+    display:inline-block;background:var(--yellow);color:var(--charcoal);
+    padding:15px 30px;font-weight:800;font-size:13.5px;text-transform:uppercase;
+    letter-spacing:0.6px;border-radius:2px;border:none;cursor:pointer;font-family:'Barlow',sans-serif;
+  }
+  .btn:hover{background:#ffc933;}
+  .btn.ghost{background:transparent;border:2px solid #444;color:#fff;margin-left:12px;}
+  .btn.ghost:hover{border-color:#666;}
+  .hero-photo{background-size:cover;background-position:center 35%;min-height:320px;}
+
+  /* SECTIONS */
+  section{padding:90px 0;}
+  .sec-title{font-size:clamp(30px,4vw,42px);margin-bottom:18px;max-width:600px;}
+  .sec-lead{color:var(--tread);font-size:16.5px;max-width:560px;margin-bottom:50px;}
+
+  /* ABOUT */
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:start;}
+  @media(max-width:860px){.about-grid{grid-template-columns:1fr;}}
+  .about-grid p{margin-bottom:16px;color:#3a3733;}
+  .service-list{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:var(--line);border:1px solid var(--line);margin-top:10px;}
+  .service-list div{background:var(--concrete);padding:20px;}
+  .service-list div .num{font-family:'Archivo Black',sans-serif;font-size:12px;color:var(--yellow);display:block;margin-bottom:6px;}
+  .service-list div h4{font-size:15px;text-transform:uppercase;letter-spacing:0.3px;}
+
+  /* GALLERY */
+  .gallery-band{background:var(--charcoal);color:var(--white);}
+  .gallery-band .sec-lead{color:#a8a49a;}
+  .car-block{margin-bottom:40px;}
+  .car-block:last-child{margin-bottom:0;}
+  .car-label{font-family:'Archivo Black',sans-serif;font-size:15px;text-transform:uppercase;letter-spacing:0.3px;color:var(--yellow);margin-bottom:12px;}
+  .mosaic{display:flex;gap:8px;overflow-x:auto;padding-bottom:8px;}
+  .mosaic::-webkit-scrollbar{height:6px;}
+  .mosaic::-webkit-scrollbar-thumb{background:#444;border-radius:3px;}
+  .mosaic img{height:190px;width:auto;object-fit:contain;background:#000;border-radius:2px;flex-shrink:0;cursor:zoom-in;}
+  .gallery-note{color:#a8a49a;font-size:13.5px;margin-top:20px;}
+  .gallery-note a{color:var(--yellow);text-decoration:underline;}
+
+  /* CATALOGUE */
+  .cat-row{display:flex;gap:12px;overflow-x:auto;padding-bottom:14px;}
+  .cat-row::-webkit-scrollbar{height:6px;}
+  .cat-row::-webkit-scrollbar-thumb{background:var(--line);border-radius:3px;}
+  .cat-card{
+    background:var(--white);border:1px solid var(--line);flex:0 0 128px;
+    text-align:center;padding:22px 12px;cursor:pointer;transition:border-color .15s;
+  }
+  .cat-card:hover{border-color:var(--steel);}
+  .cat-card svg{width:60px;height:60px;margin:0 auto 12px;}
+  .cat-card h4{font-size:12.5px;text-transform:uppercase;letter-spacing:0.3px;font-weight:700;}
+  .cat-scroll-hint{color:var(--tread);font-size:12.5px;margin-top:14px;}
+  .brand-strip{color:var(--tread);font-size:13px;line-height:1.9;margin-bottom:34px;}
+  .brand-strip strong{color:var(--charcoal);}
+
+  /* VISUALIZER */
+  #visualizer{background:var(--white);}
+  .viz-upload-zone{
+    border:2px dashed var(--line);padding:34px 20px;text-align:center;
+    cursor:pointer;transition:all .15s;background:var(--concrete);margin-bottom:26px;
+  }
+  .viz-upload-zone:hover, .viz-upload-zone.dragover{border-color:var(--yellow);}
+  .viz-upload-zone p{color:var(--tread);font-size:13.5px;margin-top:8px;}
+  .viz-file-input{display:none;}
+  .viz-step-label{font-family:'Archivo Black',sans-serif;font-size:13px;color:var(--steel);margin-bottom:12px;}
+  .viz-wheel-picker{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:30px;}
+  .viz-wheel-option{
+    width:78px;height:78px;background:var(--concrete);border:2px solid var(--line);
+    display:flex;align-items:center;justify-content:center;cursor:pointer;padding:8px;
+  }
+  .viz-wheel-option.active{border-color:var(--yellow);}
+  .viz-wheel-option svg{width:100%;height:100%;}
+  .viz-stage-wrap{
+    position:relative;background:#e4e1d9;overflow:hidden;min-height:300px;
+    display:flex;align-items:center;justify-content:center;border:1px solid var(--line);
+  }
+  .viz-stage-wrap.empty{color:var(--tread);font-size:13px;}
+  .viz-car-photo{max-width:100%;max-height:60vh;display:block;user-select:none;pointer-events:none;}
+  .viz-wheel-overlay{position:absolute;top:100px;left:100px;width:130px;height:130px;cursor:move;touch-action:none;}
+  .viz-wheel-overlay svg{width:100%;height:100%;filter:drop-shadow(0 4px 10px rgba(0,0,0,.4));}
+  .viz-resize-handle{position:absolute;bottom:-6px;right:-6px;width:18px;height:18px;background:var(--yellow);border:2px solid #fff;border-radius:50%;cursor:nwse-resize;}
+  .viz-rotate-handle{position:absolute;top:-26px;left:50%;transform:translateX(-50%);width:16px;height:16px;background:#fff;border:2px solid var(--yellow);border-radius:50%;cursor:grab;}
+  .viz-rotate-handle::after{content:'';position:absolute;top:16px;left:50%;width:1px;height:14px;background:var(--yellow);transform:translateX(-50%);}
+  .viz-controls-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px;}
+  .viz-btn{background:var(--white);color:var(--charcoal);border:1px solid var(--line);padding:10px 18px;font-size:13px;cursor:pointer;font-family:'Barlow',sans-serif;}
+  .viz-btn.primary{background:var(--yellow);border-color:var(--yellow);font-weight:700;}
+  .viz-btn:disabled{opacity:.4;cursor:not-allowed;}
+  .viz-hint{color:var(--tread);font-size:12.5px;margin-top:14px;}
+
+  /* ALIGNMENT BAND */
+  .alignment-band{background:var(--steel);color:var(--white);}
+  .alignment-band .sec-title, .alignment-band strong{color:var(--white);}
+  .alignment-band p{color:#c8d1d8;max-width:560px;margin-bottom:16px;}
+  .alignment-band .tip-tag{
+    display:inline-block;background:var(--yellow);color:var(--charcoal);font-weight:800;
+    font-size:12px;text-transform:uppercase;padding:5px 12px;margin-bottom:14px;letter-spacing:0.4px;
+  }
+
+  /* TIPS + TREAD TABLE */
+  .tips-cols{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;}
+  @media(max-width:860px){.tips-cols{grid-template-columns:1fr;}}
+  .tips-cols p{color:#3a3733;margin-bottom:16px;}
+  .tread-table{width:100%;border-collapse:collapse;font-size:13px;}
+  .tread-table td{padding:8px 12px;color:#1a1a1a;font-weight:600;}
+  .tread-table tr:nth-child(1){background:#7CC142;}
+  .tread-table tr:nth-child(2){background:#9ACB4F;}
+  .tread-table tr:nth-child(3){background:#BFD744;}
+  .tread-table tr:nth-child(4){background:#E4D543;}
+  .tread-table tr:nth-child(5){background:#F0B93D;}
+  .tread-table tr:nth-child(6){background:#F0913D;}
+  .tread-table tr:nth-child(7){background:#EA6A2E;}
+  .tread-table tr:nth-child(8){background:#E23A2E;color:#fff;}
+  .tread-table tr:nth-child(8) td{color:#fff;}
+  .tread-table td:last-child{text-align:right;}
+
+  /* CONTACT */
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;}
+  @media(max-width:860px){.contact-grid{grid-template-columns:1fr;}}
+  .contact-info h4{font-family:'Archivo Black',sans-serif;font-size:14px;margin-bottom:8px;margin-top:24px;}
+  .contact-info h4:first-child{margin-top:0;}
+  .contact-info p{color:#3a3733;}
+  .map-embed{width:100%;height:220px;background:var(--line);display:flex;align-items:center;justify-content:center;color:var(--tread);font-size:12.5px;}
+  .form-row{display:flex;gap:12px;margin-bottom:12px;}
+  .field{flex:1;}
+  .field label{display:block;font-size:11px;color:var(--tread);margin-bottom:4px;text-transform:uppercase;letter-spacing:0.3px;}
+  .field input, .field textarea{width:100%;border:1px solid var(--line);padding:10px 12px;font-family:'Barlow',sans-serif;font-size:14px;background:var(--white);}
+  .field textarea{resize:vertical;min-height:80px;}
+
+  /* FOOTER */
+  footer{background:var(--charcoal);color:#a8a49a;text-align:center;padding:40px 24px;font-size:12.5px;}
+  footer img{height:30px;filter:brightness(0) invert(1);margin:0 auto 14px;}
+  footer a{color:var(--yellow);text-decoration:underline;}
+
+  /* LIGHTBOX */
+  .lightbox-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:999;align-items:center;justify-content:center;cursor:zoom-out;padding:30px;}
+  .lightbox-overlay.active{display:flex;}
+  .lightbox-overlay img{max-width:92vw;max-height:88vh;object-fit:contain;cursor:default;}
+  .lightbox-close{position:absolute;top:20px;right:28px;color:#fff;font-size:32px;cursor:pointer;width:40px;height:40px;display:flex;align-items:center;justify-content:center;}
+</style>
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="nav-inner">
+    <img src="usave_logo.webp" alt="U-Save Tyre Co.">
+    <nav class="nav-links">
+      <a href="#gallery">Our Work</a>
+      <a href="#products">Tyres</a>
+      <a href="#wheels">Mag Wheels</a>
+      <a href="#visualizer">Try On Your Car</a>
+      <a href="#contact" class="cta">Get A Quote</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="hero-copy">
+    <div class="tagcode">NELSON &amp; WAIKATO — EST. 25+ YEARS</div>
+    <h1 class="display">Tyres and mags done right, the first time</h1>
+    <p>No upsells, no guesswork — just honest advice on the right tyre and wheel setup for what you actually drive.</p>
+    <div>
+      <a href="#contact" class="btn">Book A Free Check</a>
+      <a href="#gallery" class="btn ghost">See Our Work</a>
+    </div>
+  </div>
+  <div class="hero-photo" style="background-image:url('hero_clean.jpg');"></div>
+</div>
+
+<section id="about">
+  <div class="wrap about-grid">
+    <div>
+      <h2 class="sec-title display">Run by people who actually know tyres</h2>
+      <p>We've been fitting, balancing, and sorting alignments in Nelson for more than 25 years — long enough to know that the cheapest tyre isn't always the right one for your car.</p>
+      <p>Whatever you're driving — daily runabout, ute, trailer, or something a bit more special — we'll talk you through the actual options instead of just pointing at whatever's on special. If we wouldn't put it on our own cars, we won't sell it to you.</p>
+    </div>
+    <div>
+      <div class="service-list">
+        <div><span class="num">01</span><h4>Tyres — New &amp; Used</h4></div>
+        <div><span class="num">02</span><h4>Alloy Wheels</h4></div>
+        <div><span class="num">03</span><h4>Wheel Alignment</h4></div>
+        <div><span class="num">04</span><h4>Balancing</h4></div>
+        <div><span class="num">05</span><h4>Puncture Repair</h4></div>
+        <div><span class="num">06</span><h4>Battery Testing</h4></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="gallery" class="gallery-band">
+  <div class="wrap">
+    <h2 class="sec-title display">Recent work</h2>
+    <p class="sec-lead">A few builds we've had through the shop lately.</p>
+
+    <div class="car-block">
+      <div class="car-label">Mazda MX-5 — BBS Wheels</div>
+      <div class="mosaic">
+        <img src="miata_1.jpg" alt="Mazda MX-5 on BBS wheels 1">
+        <img src="miata_2.jpg" alt="Mazda MX-5 on BBS wheels 2">
+        <img src="miata_3.jpg" alt="Mazda MX-5 on BBS wheels 3">
+        <img src="miata_4.jpg" alt="Mazda MX-5 on BBS wheels 4">
+        <img src="miata_5.jpg" alt="Mazda MX-5 on BBS wheels 5">
+        <img src="miata_6.jpg" alt="Mazda MX-5 on BBS wheels 6">
+      </div>
+    </div>
+    <div class="car-block">
+      <div class="car-label">Toyota Land Cruiser 80-Series — Off-Road Build</div>
+      <div class="mosaic">
+        <img src="cruiser_1.jpg" alt="Toyota Land Cruiser 1">
+        <img src="cruiser_2.jpg" alt="Toyota Land Cruiser 2">
+        <img src="cruiser_3.jpg" alt="Toyota Land Cruiser 3">
+        <img src="cruiser_4.jpg" alt="Toyota Land Cruiser 4">
+      </div>
+    </div>
+    <div class="car-block">
+      <div class="car-label">Ford Falcon Ute — Chrome Wheels</div>
+      <div class="mosaic">
+        <img src="falcon_1.jpg" alt="Ford Falcon ute 1">
+        <img src="falcon_2.jpg" alt="Ford Falcon ute 2">
+        <img src="falcon_3.jpg" alt="Ford Falcon ute 3">
+      </div>
+    </div>
+    <p class="gallery-note">More on <a href="https://www.facebook.com/USaveTyre/photos" target="_blank" rel="noopener">Facebook &rarr;</a></p>
+  </div>
+</section>
+
+<section id="products">
+  <div class="wrap">
+    <h2 class="sec-title display">Tyre brands we stock</h2>
+    <p class="sec-lead">From budget-friendly to premium performance — if it's a real brand, we can probably get it in.</p>
+    <div class="brand-strip"><strong>Carrying:</strong> Goodyear, Dunlop, Maxxis, Pirelli, Nexen, GT Radial, Nitto, Nankang, Continental, Falken, Toyo, Hankook, Hifly, Momo, Bridgestone, Firestone, Yokohama, Kumho, Mickey Thompson</p>
+    <div class="cat-row" id="tyre-row"></div>
+    <p class="cat-scroll-hint">Scroll to see the full range &rarr;</p>
+  </div>
+</section>
+
+<section id="visualizer">
+  <div class="wrap">
+    <h2 class="sec-title display">Try it on your car</h2>
+    <p class="sec-lead">Upload a photo of your car and drag a wheel style into place to get a rough idea before you buy.</p>
+
+    <div class="viz-upload-zone" id="viz-upload-zone">
+      <div style="font-size:28px;">&#128247;</div>
+      <p><strong>Click to upload</strong> or drag a photo here</p>
+    </div>
+    <input type="file" id="viz-file-input" class="viz-file-input" accept="image/*">
+
+    <div class="viz-step-label">Pick A Style</div>
+    <div class="viz-wheel-picker" id="viz-wheel-picker"></div>
+
+    <div class="viz-stage-wrap empty" id="viz-stage-wrap">Upload a photo above to get started</div>
+    <div class="viz-controls-row">
+      <button class="viz-btn" id="viz-reset-btn" disabled>Reset Position</button>
+      <button class="viz-btn primary" id="viz-download-btn" disabled>Download Image</button>
+    </div>
+    <p class="viz-hint">Drag to move · corner dot to resize · top dot to rotate</p>
+  </div>
+</section>
+
+<section id="wheels">
+  <div class="wrap">
+    <h2 class="sec-title display">Mag wheel brands</h2>
+    <p class="sec-lead">Custom wheel packages to suit your car and your budget.</p>
+    <div class="brand-strip"><strong>Carrying:</strong> DTM, BGW, ROH, Advanti Racing, Lenso, Rotiform, Fuel, TSW, MAK, Diesel, ANZ, American Racing, Niche, Foose, U.S. Mag, Enkei, Konig, Mamba, Worx, O.Z Racing, Black Rhino, Cragar, Ridler, XXR, Sportmax, Kudos, Rota</p>
+    <div class="cat-row" id="wheel-row"></div>
+    <p class="cat-scroll-hint">Scroll to see the full range &rarr;</p>
+  </div>
+</section>
+
+<div class="alignment-band">
+  <div class="wrap">
+    <h2 class="sec-title display">Why alignment actually matters</h2>
+    <p>A wheel that's out of alignment wears unevenly, pulls slightly on the road, and quietly costs you fuel — most people don't notice until the tyre's already half worn on one edge.</p>
+    <p>Factory alignment settings shift over time: kerbs, potholes, and worn suspension parts all knock it out gradually. If you're seeing uneven wear on the inside or outside of a tyre, that's usually the giveaway.</p>
+    <div class="tip-tag">Worth Knowing</div>
+    <p>It's a cheap check relative to what it saves you in tyre life — worth getting done yearly, not just when something feels off.</p>
+  </div>
+</div>
+
+<section id="tips">
+  <div class="wrap tips-cols">
+    <div>
+      <h2 class="sec-title display">Tyre pressure, actually explained</h2>
+      <p>Under-inflated tyres overheat and wear unevenly. Over-inflated ones make for a harsher ride and wear the centre of the tread faster than the edges. Either way, you're losing tyre life and fuel economy.</p>
+      <p>Check pressures cold — meaning before you've driven anywhere, not after a long trip when the tyres have heated up and the reading's skewed. Every 2–4 weeks is a good habit, spare included.</p>
+      <p><strong>We'll check yours for free</strong>, whether you bought the tyres here or not.</p>
+    </div>
+    <div>
+      <h4 style="margin-bottom:14px;font-family:'Archivo Black',sans-serif;font-size:14px;">Tread Depth Guide</h4>
+      <table class="tread-table">
+        <tr><td>8mm</td><td>Like new</td></tr>
+        <tr><td>7mm</td><td>13% worn</td></tr>
+        <tr><td>6mm</td><td>Good condition</td></tr>
+        <tr><td>5mm</td><td>47% worn</td></tr>
+        <tr><td>4mm</td><td>62% worn</td></tr>
+        <tr><td>3mm</td><td>Check monthly</td></tr>
+        <tr><td>2mm</td><td>Time to replace</td></tr>
+        <tr><td>1.6mm</td><td>Legal limit</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap contact-grid">
+    <div class="contact-info">
+      <h4>Visit Us</h4>
+      <p>46 St Vincent Street<br>Nelson, 7010</p>
+      <h4>Call Us</h4>
+      <p>03 548 2077</p>
+      <h4>Hours</h4>
+      <p>Mon–Fri 7:30am–5:00pm<br>Sat 9:00am–12:00pm</p>
+      <div class="map-embed" style="margin-top:20px;">Map — 46 St Vincent Street, Nelson</div>
+    </div>
+    <div>
+      <h4 style="font-family:'Archivo Black',sans-serif;font-size:14px;margin-bottom:16px;">Get A Free Quote</h4>
+      <div class="form-row"><div class="field"><label>First Name</label><input type="text"></div><div class="field"><label>Last Name</label><input type="text"></div></div>
+      <div class="form-row"><div class="field"><label>Email</label><input type="email"></div></div>
+      <div class="form-row"><div class="field"><label>Mobile</label><input type="tel"></div></div>
+      <div class="form-row"><div class="field"><label>Car Make</label><input type="text"></div><div class="field"><label>Model</label><input type="text"></div></div>
+      <div class="form-row"><div class="field"><label>Year</label><input type="text"></div><div class="field"><label>Tyre Size — eg. 225/45/17</label><input type="text"></div></div>
+      <div class="form-row"><div class="field"><label>Message</label><textarea></textarea></div></div>
+      <button class="btn" style="border:none;">Send Enquiry</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <img src="usave_logo.webp" alt="U-Save Tyre Co.">
+  <p>46 St Vincent Street, Nelson &nbsp;|&nbsp; 03 548 2077 &nbsp;|&nbsp; <a href="https://www.facebook.com/USaveTyre/" target="_blank" rel="noopener">Facebook</a></p>
+</footer>
+
+<div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
+  <div class="lightbox-close" onclick="closeLightbox()">&times;</div>
+  <img id="lightbox-img" src="" alt="Enlarged photo">
+</div>
+
+<script>
+// ---------- Lightbox ----------
+function openLightbox(src){
+  document.getElementById('lightbox-img').src = src;
+  document.getElementById('lightbox').classList.add('active');
+}
+function closeLightbox(){
+  document.getElementById('lightbox').classList.remove('active');
+}
+document.querySelectorAll('.mosaic img').forEach(img => {
+  img.addEventListener('click', () => openLightbox(img.src));
+});
+document.addEventListener('keydown', e => { if(e.key === 'Escape') closeLightbox(); });
+
+// ---------- Wheel icon SVGs (shared by catalogue + visualizer) ----------
+const tyreIconSvg = `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="42" fill="none" stroke="#1a1a1a" stroke-width="9"/><circle cx="50" cy="50" r="42" fill="none" stroke="#1a1a1a" stroke-width="1" stroke-dasharray="2 3"/><circle cx="50" cy="50" r="22" fill="#EDEAE3" stroke="#999" stroke-width="1.5"/></svg>`;
+const wheelIconSvg = `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="#1a1a1a" stroke-width="3"/><circle cx="50" cy="50" r="10" fill="#1a1a1a"/><g stroke="#1a1a1a" stroke-width="3"><line x1="50" y1="50" x2="50" y2="14"/><line x1="50" y1="50" x2="79" y2="32"/><line x1="50" y1="50" x2="79" y2="68"/><line x1="50" y1="50" x2="50" y2="86"/><line x1="50" y1="50" x2="21" y2="68"/><line x1="50" y1="50" x2="21" y2="32"/></g></svg>`;
+
+const tyreBrands = ["Goodyear","Dunlop","Maxxis","Pirelli","Nexen","GT Radial","Nitto","Nankang","Continental","Falken","Toyo Tires","Hankook","Hifly","Momo","Bridgestone","Firestone","Yokohama","Kumho","Mickey Thompson"];
+const wheelBrands = ["DTM","BGW","ROH","Advanti Racing","Lenso","Rotiform","Fuel","TSW","MAK","Diesel","ANZ","American Racing","Niche","Foose","U.S. Mag","Enkei","Konig","Mamba","Worx","O.Z Racing","Black Rhino","Cragar","Ridler","XXR","Sportmax","Kudos","Rota"];
+
+function buildCatRow(containerId, brands, iconSvg){
+  const row = document.getElementById(containerId);
+  brands.forEach(b => {
+    const card = document.createElement('div');
+    card.className = 'cat-card';
+    card.innerHTML = iconSvg + `<h4>${b}</h4>`;
+    row.appendChild(card);
+  });
+}
+buildCatRow('tyre-row', tyreBrands, tyreIconSvg);
+buildCatRow('wheel-row', wheelBrands, wheelIconSvg);
+
+// ---------- Wheel visualizer ----------
+const vizWheelDesigns = [
+  { label:'Classic 5-Spoke', svg:`<svg viewBox="0 0 200 200"><defs><radialGradient id="vg1" cx="40%" cy="35%" r="70%"><stop offset="0%" stop-color="#f5f5f5"/><stop offset="55%" stop-color="#c9c9c9"/><stop offset="100%" stop-color="#8a8a8a"/></radialGradient></defs><circle cx="100" cy="100" r="96" fill="#1a1a1a"/><circle cx="100" cy="100" r="92" fill="url(#vg1)"/><circle cx="100" cy="100" r="70" fill="#1a1a1a"/><g fill="url(#vg1)"><path d="M100 40 L118 92 L100 100 L82 92 Z" transform="rotate(0 100 100)"/><path d="M100 40 L118 92 L100 100 L82 92 Z" transform="rotate(72 100 100)"/><path d="M100 40 L118 92 L100 100 L82 92 Z" transform="rotate(144 100 100)"/><path d="M100 40 L118 92 L100 100 L82 92 Z" transform="rotate(216 100 100)"/><path d="M100 40 L118 92 L100 100 L82 92 Z" transform="rotate(288 100 100)"/></g><circle cx="100" cy="100" r="24" fill="url(#vg1)"/><circle cx="100" cy="100" r="24" fill="none" stroke="#1a1a1a" stroke-width="2"/><circle cx="100" cy="100" r="6" fill="#1a1a1a"/></svg>` },
+  { label:'Mesh Style', svg:`<svg viewBox="0 0 200 200"><defs><radialGradient id="vg2" cx="40%" cy="35%" r="70%"><stop offset="0%" stop-color="#fdfdfd"/><stop offset="60%" stop-color="#cfcfcf"/><stop offset="100%" stop-color="#8f8f8f"/></radialGradient></defs><circle cx="100" cy="100" r="96" fill="#1a1a1a"/><circle cx="100" cy="100" r="92" fill="url(#vg2)"/><circle cx="100" cy="100" r="70" fill="#1a1a1a"/><g stroke="url(#vg2)" stroke-width="7" fill="none">${Array.from({length:12}).map((_,i)=>{const a=(i*30)*Math.PI/180;const x1=100+30*Math.cos(a),y1=100+30*Math.sin(a);const x2=100+68*Math.cos(a+0.35),y2=100+68*Math.sin(a+0.35);return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}"/>`;}).join('')}</g><circle cx="100" cy="100" r="26" fill="url(#vg2)"/><circle cx="100" cy="100" r="26" fill="none" stroke="#1a1a1a" stroke-width="2"/><circle cx="100" cy="100" r="7" fill="#1a1a1a"/></svg>` },
+  { label:'10-Spoke Sport', svg:`<svg viewBox="0 0 200 200"><defs><radialGradient id="vg3" cx="40%" cy="35%" r="70%"><stop offset="0%" stop-color="#e8e8e8"/><stop offset="55%" stop-color="#a8a8a8"/><stop offset="100%" stop-color="#555"/></radialGradient></defs><circle cx="100" cy="100" r="96" fill="#1a1a1a"/><circle cx="100" cy="100" r="92" fill="url(#vg3)"/><circle cx="100" cy="100" r="68" fill="#1a1a1a"/><g fill="url(#vg3)">${Array.from({length:10}).map((_,i)=>`<path d="M100 36 L107 88 L100 96 L93 88 Z" transform="rotate(${i*36} 100 100)"/>`).join('')}</g><circle cx="100" cy="100" r="22" fill="url(#vg3)"/><circle cx="100" cy="100" r="22" fill="none" stroke="#1a1a1a" stroke-width="2"/><circle cx="100" cy="100" r="6" fill="#1a1a1a"/></svg>` },
+  { label:'Deep Dish', svg:`<svg viewBox="0 0 200 200"><defs><radialGradient id="vg4" cx="40%" cy="35%" r="75%"><stop offset="0%" stop-color="#fff"/><stop offset="45%" stop-color="#d8d8d8"/><stop offset="80%" stop-color="#9a9a9a"/><stop offset="100%" stop-color="#666"/></radialGradient></defs><circle cx="100" cy="100" r="96" fill="#111"/><circle cx="100" cy="100" r="93" fill="url(#vg4)"/><circle cx="100" cy="100" r="60" fill="#1a1a1a"/><g fill="url(#vg4)"><path d="M100 46 L112 90 L100 98 L88 90 Z"/><path d="M100 46 L112 90 L100 98 L88 90 Z" transform="rotate(60 100 100)"/><path d="M100 46 L112 90 L100 98 L88 90 Z" transform="rotate(120 100 100)"/><path d="M100 46 L112 90 L100 98 L88 90 Z" transform="rotate(180 100 100)"/><path d="M100 46 L112 90 L100 98 L88 90 Z" transform="rotate(240 100 100)"/><path d="M100 46 L112 90 L100 98 L88 90 Z" transform="rotate(300 100 100)"/></g><circle cx="100" cy="100" r="20" fill="url(#vg4)"/><circle cx="100" cy="100" r="20" fill="none" stroke="#1a1a1a" stroke-width="2"/><circle cx="100" cy="100" r="5" fill="#1a1a1a"/></svg>` }
+];
+
+(function(){
+  const picker = document.getElementById('viz-wheel-picker');
+  let vizSelectedSvg = vizWheelDesigns[0].svg;
+  vizWheelDesigns.forEach((w,i) => {
+    const opt = document.createElement('div');
+    opt.className = 'viz-wheel-option' + (i===0 ? ' active' : '');
+    opt.innerHTML = w.svg;
+    opt.title = w.label;
+    opt.addEventListener('click', () => {
+      document.querySelectorAll('.viz-wheel-option').forEach(o=>o.classList.remove('active'));
+      opt.classList.add('active');
+      vizSelectedSvg = w.svg;
+      if (vizOverlayEl) {
+        const inner = vizOverlayEl.querySelector('.viz-svg-inner');
+        if (inner) inner.innerHTML = vizSelectedSvg;
+      }
+    });
+    picker.appendChild(opt);
+  });
+
+  const uploadZone = document.getElementById('viz-upload-zone');
+  const fileInput = document.getElementById('viz-file-input');
+  const stageWrap = document.getElementById('viz-stage-wrap');
+  const resetBtn = document.getElementById('viz-reset-btn');
+  const downloadBtn = document.getElementById('viz-download-btn');
+  let vizOverlayEl = null;
+  let vizCarImgEl = null;
+
+  uploadZone.addEventListener('click', () => fileInput.click());
+  uploadZone.addEventListener('dragover', e => { e.preventDefault(); uploadZone.classList.add('dragover'); });
+  uploadZone.addEventListener('dragleave', () => uploadZone.classList.remove('dragover'));
+  uploadZone.addEventListener('drop', e => {
+    e.preventDefault(); uploadZone.classList.remove('dragover');
+    if (e.dataTransfer.files[0]) vizLoadPhoto(e.dataTransfer.files[0]);
+  });
+  fileInput.addEventListener('change', e => { if (e.target.files[0]) vizLoadPhoto(e.target.files[0]); });
+
+  function vizLoadPhoto(file){
+    const reader = new FileReader();
+    reader.onload = e => {
+      stageWrap.classList.remove('empty');
+      stageWrap.innerHTML = '';
+      vizCarImgEl = document.createElement('img');
+      vizCarImgEl.className = 'viz-car-photo';
+      vizCarImgEl.src = e.target.result;
+      stageWrap.appendChild(vizCarImgEl);
+      vizCarImgEl.onload = () => {
+        vizAddOverlay();
+        resetBtn.disabled = false;
+        downloadBtn.disabled = false;
+      };
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function vizAddOverlay(){
+    if (vizOverlayEl) vizOverlayEl.remove();
+    vizOverlayEl = document.createElement('div');
+    vizOverlayEl.className = 'viz-wheel-overlay';
+    vizOverlayEl.style.top = '90px';
+    vizOverlayEl.style.left = '90px';
+    vizOverlayEl.style.width = '130px';
+    vizOverlayEl.style.height = '130px';
+    vizOverlayEl.style.transform = 'rotate(0deg)';
+    const inner = document.createElement('div');
+    inner.className = 'viz-svg-inner';
+    inner.innerHTML = vizSelectedSvg;
+    inner.style.width = '100%'; inner.style.height = '100%';
+    vizOverlayEl.appendChild(inner);
+    const resizeHandle = document.createElement('div');
+    resizeHandle.className = 'viz-resize-handle';
+    vizOverlayEl.appendChild(resizeHandle);
+    const rotateHandle = document.createElement('div');
+    rotateHandle.className = 'viz-rotate-handle';
+    vizOverlayEl.appendChild(rotateHandle);
+    stageWrap.appendChild(vizOverlayEl);
+    vizMakeDraggable(vizOverlayEl, resizeHandle, rotateHandle);
+  }
+
+  resetBtn.addEventListener('click', () => { if (vizCarImgEl) vizAddOverlay(); });
+
+  function vizMakeDraggable(el, resizeHandle, rotateHandle){
+    let mode=null,startX,startY,startLeft,startTop,startW,startAngle,centerX,centerY,startPointerAngle;
+    function getAngle(){const t=el.style.transform||'';const m=t.match(/rotate\(([-\d.]+)deg\)/);return m?parseFloat(m[1]):0;}
+    el.addEventListener('pointerdown', e => {
+      if (e.target===resizeHandle || e.target===rotateHandle) return;
+      mode='move'; startX=e.clientX; startY=e.clientY;
+      startLeft=parseFloat(el.style.left); startTop=parseFloat(el.style.top);
+      el.setPointerCapture(e.pointerId);
+    });
+    resizeHandle.addEventListener('pointerdown', e => {
+      e.stopPropagation(); mode='resize'; startX=e.clientX; startW=parseFloat(el.style.width);
+      resizeHandle.setPointerCapture(e.pointerId);
+    });
+    rotateHandle.addEventListener('pointerdown', e => {
+      e.stopPropagation(); mode='rotate';
+      const rect=el.getBoundingClientRect(); centerX=rect.left+rect.width/2; centerY=rect.top+rect.height/2;
+      startAngle=getAngle(); startPointerAngle=Math.atan2(e.clientY-centerY, e.clientX-centerX)*180/Math.PI;
+      rotateHandle.setPointerCapture(e.pointerId);
+    });
+    function onMove(e){
+      if (mode==='move'){
+        const dx=e.clientX-startX, dy=e.clientY-startY;
+        el.style.left=(startLeft+dx)+'px'; el.style.top=(startTop+dy)+'px';
+      } else if (mode==='resize'){
+        const dx=e.clientX-startX; const newSize=Math.max(40, startW+dx);
+        el.style.width=newSize+'px'; el.style.height=newSize+'px';
+      } else if (mode==='rotate'){
+        const cur=Math.atan2(e.clientY-centerY, e.clientX-centerX)*180/Math.PI;
+        el.style.transform=`rotate(${startAngle+(cur-startPointerAngle)}deg)`;
+      }
+    }
+    function onUp(){ mode=null; }
+    el.addEventListener('pointermove', onMove); el.addEventListener('pointerup', onUp);
+    resizeHandle.addEventListener('pointermove', onMove); resizeHandle.addEventListener('pointerup', onUp);
+    rotateHandle.addEventListener('pointermove', onMove); rotateHandle.addEventListener('pointerup', onUp);
+  }
+
+  downloadBtn.addEventListener('click', () => {
+    if (!vizCarImgEl || !vizOverlayEl) return;
+    const canvas = document.createElement('canvas');
+    const imgRect = vizCarImgEl.getBoundingClientRect();
+    const scaleX = vizCarImgEl.naturalWidth / imgRect.width;
+    const scaleY = vizCarImgEl.naturalHeight / imgRect.height;
+    canvas.width = vizCarImgEl.naturalWidth; canvas.height = vizCarImgEl.naturalHeight;
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(vizCarImgEl, 0, 0, canvas.width, canvas.height);
+    const wheelRect = vizOverlayEl.getBoundingClientRect();
+    const wx=(wheelRect.left-imgRect.left)*scaleX, wy=(wheelRect.top-imgRect.top)*scaleY;
+    const ww=wheelRect.width*scaleX, wh=wheelRect.height*scaleY;
+    const t=vizOverlayEl.style.transform||''; const m=t.match(/rotate\(([-\d.]+)deg\)/);
+    const angle = m?parseFloat(m[1]):0;
+    const svgString = new XMLSerializer().serializeToString(vizOverlayEl.querySelector('svg'));
+    const svgBlob = new Blob([svgString], {type:'image/svg+xml'});
+    const url = URL.createObjectURL(svgBlob);
+    const wheelImg = new Image();
+    wheelImg.onload = () => {
+      ctx.save(); ctx.translate(wx+ww/2, wy+wh/2); ctx.rotate(angle*Math.PI/180);
+      ctx.drawImage(wheelImg, -ww/2, -wh/2, ww, wh); ctx.restore();
+      URL.revokeObjectURL(url);
+      const link = document.createElement('a');
+      link.download = 'my-car-new-wheels.png'; link.href = canvas.toDataURL('image/png'); link.click();
+    };
+    wheelImg.src = url;
+  });
+})();
+</script>
+
+</body>
+</html>
