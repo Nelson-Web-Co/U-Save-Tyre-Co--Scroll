@@ -224,22 +224,18 @@
   .lightbox-close{position:absolute;top:20px;right:28px;color:#fff;font-size:32px;cursor:pointer;width:40px;height:40px;display:flex;align-items:center;justify-content:center;}
 
   /* STICKY STORY SECTION */
-  .story-section{background:var(--white);padding:0;}
-  .story-grid{display:grid;grid-template-columns:0.9fr 1.1fr;gap:0;}
+  .story-section{background:var(--white);padding:80px 0;}
+  .story-grid{display:grid;grid-template-columns:0.9fr 1.1fr;gap:50px;align-items:stretch;}
   @media(max-width:860px){.story-grid{grid-template-columns:1fr;}}
   .story-sticky-wrap{position:relative;}
   .story-sticky{
-    position:sticky;top:0;height:100vh;overflow:hidden;
+    height:100%;min-height:500px;overflow:hidden;border-radius:4px;
   }
-  @media(max-width:860px){.story-sticky{position:relative;height:50vh;top:0;}}
-  .story-sticky img{width:100%;height:100%;object-fit:cover;}
-  .story-text-col{padding:0 60px;}
-  @media(max-width:860px){.story-text-col{padding:60px 24px;}}
-  .story-block{
-    min-height:100vh;display:flex;flex-direction:column;justify-content:center;
-    max-width:460px;
-  }
-  @media(max-width:860px){.story-block{min-height:auto;padding:30px 0;}}
+  @media(max-width:860px){.story-sticky{min-height:320px;}}
+  .story-sticky img{width:100%;height:100%;object-fit:cover;display:block;}
+  .story-text-col{padding:0 60px 0 0;display:flex;flex-direction:column;justify-content:center;gap:36px;}
+  @media(max-width:860px){.story-text-col{padding:40px 24px 0;gap:28px;}}
+  .story-block{max-width:460px;}
   .story-block .story-num{
     font-family:'Archivo Black',sans-serif;color:var(--yellow);font-size:14px;margin-bottom:14px;
   }
@@ -254,6 +250,21 @@
     display:inline-block;background:var(--yellow);color:var(--charcoal);font-weight:800;
     font-size:12px;text-transform:uppercase;padding:5px 12px;margin-bottom:14px;letter-spacing:0.4px;
   }
+
+  /* PARALLAX SECTION (alignment) */
+  .parallax-section{
+    position:relative;background-image:url('alignment_photo.jpg');
+    background-size:cover;background-position:center 30%;background-attachment:fixed;
+    padding:120px 0;
+  }
+  .parallax-section::after{
+    content:'';position:absolute;inset:0;background:rgba(10,9,8,.78);
+  }
+  @media(max-width:860px){.parallax-section{background-attachment:scroll;}}
+  .parallax-inner{position:relative;z-index:2;max-width:640px;margin:0 auto;padding:0 24px;display:flex;flex-direction:column;gap:60px;}
+  .parallax-inner .story-block{max-width:none;}
+  .parallax-inner .story-block h3{color:var(--white);}
+  .parallax-inner .story-block p{color:#d8d3c8;font-size:17px;}
 </style>
 </head>
 <body>
@@ -414,30 +425,23 @@
   </div>
 </section>
 
-<section class="story-section dark">
-  <div class="story-grid">
-    <div class="story-sticky-wrap">
-      <div class="story-sticky">
-        <img src="alignment_photo.jpg" alt="Close up of alloy wheel and brake">
-      </div>
+<section class="parallax-section">
+  <div class="parallax-inner">
+    <div class="story-block">
+      <div class="story-num">01</div>
+      <h3 class="display">Why alignment actually matters</h3>
+      <p>A wheel that's out of alignment wears unevenly, pulls slightly on the road, and quietly costs you fuel — most people don't notice until the tyre's already half worn on one edge.</p>
     </div>
-    <div class="story-text-col">
-      <div class="story-block">
-        <div class="story-num">01</div>
-        <h3 class="display">Why alignment actually matters</h3>
-        <p>A wheel that's out of alignment wears unevenly, pulls slightly on the road, and quietly costs you fuel — most people don't notice until the tyre's already half worn on one edge.</p>
-      </div>
-      <div class="story-block">
-        <div class="story-num">02</div>
-        <h3 class="display">It shifts more than you'd think</h3>
-        <p>Factory alignment settings shift over time: kerbs, potholes, and worn suspension parts all knock it out gradually. Uneven wear on the inside or outside of a tyre is usually the giveaway.</p>
-      </div>
-      <div class="story-block">
-        <div class="story-num">03</div>
-        <div class="tip-tag">Worth Knowing</div>
-        <h3 class="display">Cheap now, expensive later</h3>
-        <p>It's a cheap check relative to what it saves you in tyre life — worth getting done yearly, not just when something feels off.</p>
-      </div>
+    <div class="story-block">
+      <div class="story-num">02</div>
+      <h3 class="display">It shifts more than you'd think</h3>
+      <p>Factory alignment settings shift over time: kerbs, potholes, and worn suspension parts all knock it out gradually. Uneven wear on the inside or outside of a tyre is usually the giveaway.</p>
+    </div>
+    <div class="story-block">
+      <div class="story-num">03</div>
+      <div class="tip-tag">Worth Knowing</div>
+      <h3 class="display">Cheap now, expensive later</h3>
+      <p>It's a cheap check relative to what it saves you in tyre life — worth getting done yearly, not just when something feels off.</p>
     </div>
   </div>
 </section>
@@ -493,6 +497,7 @@
 <footer>
   <div class="logo-badge"><img src="usave_logo.webp" alt="U-Save Tyre Co."></div>
   <p>46 St Vincent Street, Nelson &nbsp;|&nbsp; 03 548 2077 &nbsp;|&nbsp; <a href="https://www.facebook.com/USaveTyre/" target="_blank" rel="noopener">Facebook</a></p>
+  <p style="margin-top:14px;font-size:12px;color:#6b675f;">Website Designed and created by NelsonWebCo</p>
 </footer>
 
 <div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
