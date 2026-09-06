@@ -51,14 +51,12 @@
 
   /* HERO — full-height rotating photo background, centered content */
   .hero{
-    position:fixed;top:76px;left:0;width:100%;height:400px;z-index:1;
-    display:flex;align-items:center;justify-content:flex-start;
-    overflow:hidden;background:var(--charcoal);text-align:left;
+    position:relative;width:100%;height:48vw;max-height:750px;min-height:500px;
+    display:flex;align-items:center;justify-content:center;
+    overflow:hidden;background:var(--charcoal);text-align:center;
   }
-  .hero-spacer{height:400px;width:100%;}
   @media(max-width:700px){
-    .hero{position:relative;top:0;height:auto;min-height:60vh;}
-    .hero-spacer{display:none;}
+    .hero{height:auto;min-height:60vh;max-height:none;}
   }
   .hero-slide{
     position:absolute;inset:0;background-size:cover;background-repeat:no-repeat;
@@ -72,7 +70,7 @@
   }
   .hero-copy{
     position:relative;z-index:2;color:var(--white);
-    padding:0 24px;max-width:640px;
+    padding:0 24px;max-width:640px;margin:0 auto;
   }
   .hero-copy .tagcode{
     display:inline-block;font-family:'Barlow',sans-serif;font-weight:800;font-size:12.5px;letter-spacing:1.5px;
@@ -288,6 +286,14 @@
   .parallax-inner .story-block{max-width:none;}
   .parallax-inner .story-block h3{color:var(--white);}
   .parallax-inner .story-block p{color:#d8d3c8;font-size:17px;}
+  /* SCROLL REVEAL */
+  .reveal-left, .reveal-right{opacity:0;transition:opacity .7s ease, transform .7s ease;}
+  .reveal-left{transform:translateX(-50px);}
+  .reveal-right{transform:translateX(50px);}
+  .reveal-left.revealed, .reveal-right.revealed{opacity:1;transform:translateX(0);}
+  @media(prefers-reduced-motion: reduce){
+    .reveal-left, .reveal-right{opacity:1;transform:none;transition:none;}
+  }
 </style>
 </head>
 <body>
@@ -318,20 +324,12 @@
   </div>
   <div class="hero-dots" id="hero-dots"></div>
 </div>
-<div class="hero-spacer"></div>
-
-<section id="about" style="position:relative;z-index:2;background:var(--white);">
-  <div class="wrap about-layout">
-    <div class="about-photo-wrap">
-      <div class="about-photo-block"></div>
-      <img src="story_photo.jpg" alt="U-Save Tyre Co. showroom" class="about-photo">
-    </div>
-    <div class="about-text">
-      <div class="about-label">About Us</div>
-      <h2 class="sec-title display" style="margin-bottom:20px;">Run by people who actually know tyres</h2>
-      <p>We've been fitting, balancing, and sorting alignments in Nelson for more than 25 years — long enough to know that the cheapest tyre isn't always the right one for your car.</p>
-      <p>Whatever you're driving — daily runabout, ute, trailer, or something a bit more special — we'll talk you through the actual options instead of just pointing at whatever's on special. If we wouldn't put it on our own cars, we won't sell it to you.</p>
-    </div>
+<section id="about">
+  <div class="wrap" style="max-width:760px;text-align:center;">
+    <div class="about-label" style="justify-content:center;">About Us</div>
+    <h2 class="sec-title display reveal-left" style="margin:0 auto 20px;">Run by people who actually know tyres</h2>
+    <p style="text-align:center;">We've been fitting, balancing, and sorting alignments in Nelson for more than 25 years — long enough to know that the cheapest tyre isn't always the right one for your car.</p>
+    <p style="text-align:center;">Whatever you're driving — daily runabout, ute, trailer, or something a bit more special — we'll talk you through the actual options instead of just pointing at whatever's on special. If we wouldn't put it on our own cars, we won't sell it to you.</p>
   </div>
 </section>
 
@@ -344,15 +342,15 @@
     </div>
     <div class="story-text-col">
       <div class="story-block">
-        <h3 class="display">A real showroom, not just a website</h3>
+        <h3 class="display reveal-left">A real showroom, not just a website</h3>
         <p>Come in and actually see the wheels before you buy — our showroom's stocked with a huge range of mag wheels on display, not just photos online.</p>
       </div>
       <div class="story-block">
-        <h3 class="display">We fit what we sell</h3>
+        <h3 class="display reveal-right">We fit what we sell</h3>
         <p>Everything you see in store gets fitted and balanced right here by our own team — no sending you off somewhere else to get it done.</p>
       </div>
       <div class="story-block">
-        <h3 class="display">Straight answers, every time</h3>
+        <h3 class="display reveal-left">Straight answers, every time</h3>
         <p>If a cheaper option is genuinely fine for your car, we'll tell you. If it's not, we'll tell you that too — no upselling, just honest advice.</p>
       </div>
     </div>
@@ -361,8 +359,8 @@
 
 <section id="gallery" class="gallery-band">
   <div class="wrap">
-    <h2 class="sec-title display">Work we've done</h2>
-    <p class="sec-lead">A few builds we've had through the shop.</p>
+    <h2 class="sec-title display reveal-right">Work we've done</h2>
+    <p class="sec-lead reveal-right">A few builds we've had through the shop.</p>
 
     <div class="car-block">
       <div class="car-label">Mazda MX-5 — BBS Wheels</div>
@@ -398,8 +396,8 @@
 
 <section id="visualizer">
   <div class="wrap">
-    <h2 class="sec-title display">Try it on your car</h2>
-    <p class="sec-lead">Upload a photo of your car and drag a wheel style into place to get a rough idea before you buy.</p>
+    <h2 class="sec-title display reveal-left">Try it on your car</h2>
+    <p class="sec-lead reveal-left">Upload a photo of your car and drag a wheel style into place to get a rough idea before you buy.</p>
 
     <div class="viz-upload-zone" id="viz-upload-zone">
       <div style="font-size:28px;">&#128247;</div>
@@ -421,8 +419,8 @@
 
 <section id="wheels">
   <div class="wrap">
-    <h2 class="sec-title display">Mag wheel brands</h2>
-    <p class="sec-lead">Custom wheel packages to suit your car and your budget.</p>
+    <h2 class="sec-title display reveal-right">Mag wheel brands</h2>
+    <p class="sec-lead reveal-right">Custom wheel packages to suit your car and your budget.</p>
     <div class="brand-strip"><strong>Carrying:</strong> DTM, BGW, ROH, Advanti Racing, Lenso, Rotiform, Fuel, TSW, MAK, Diesel, ANZ, American Racing, Niche, Foose, U.S. Mag, Enkei, Konig, Mamba, Worx, O.Z Racing, Black Rhino, Cragar, Ridler, XXR, Sportmax, Kudos, Rota</p>
     <div class="cat-row" id="wheel-row"></div>
     <p class="cat-scroll-hint">Scroll to see the full range &rarr;</p>
@@ -431,8 +429,8 @@
 
 <section id="products">
   <div class="wrap">
-    <h2 class="sec-title display">Tyre brands we stock</h2>
-    <p class="sec-lead">From budget-friendly to premium performance — if it's a real brand, we can probably get it in.</p>
+    <h2 class="sec-title display reveal-left">Tyre brands we stock</h2>
+    <p class="sec-lead reveal-left">From budget-friendly to premium performance — if it's a real brand, we can probably get it in.</p>
     <p class="brand-strip"><strong>Carrying:</strong> Goodyear, Dunlop, Maxxis, Pirelli, Nexen, GT Radial, Nitto, Nankang, Continental, Falken, Toyo, Hankook, Hifly, Momo, Bridgestone, Firestone, Yokohama, Kumho, Mickey Thompson</p>
   </div>
 </section>
@@ -440,16 +438,16 @@
 <section class="parallax-section">
   <div class="parallax-inner">
     <div class="story-block">
-      <h3 class="display">Why alignment actually matters</h3>
+      <h3 class="display reveal-right">Why alignment actually matters</h3>
       <p>A wheel that's out of alignment wears unevenly, pulls slightly on the road, and quietly costs you fuel — most people don't notice until the tyre's already half worn on one edge.</p>
     </div>
     <div class="story-block">
-      <h3 class="display">It shifts more than you'd think</h3>
+      <h3 class="display reveal-left">It shifts more than you'd think</h3>
       <p>Factory alignment settings shift over time: kerbs, potholes, and worn suspension parts all knock it out gradually. Uneven wear on the inside or outside of a tyre is usually the giveaway.</p>
     </div>
     <div class="story-block">
       <div class="tip-tag">Worth Knowing</div>
-      <h3 class="display">Cheap now, expensive later</h3>
+      <h3 class="display reveal-right">Cheap now, expensive later</h3>
       <p>It's a cheap check relative to what it saves you in tyre life — worth getting done yearly, not just when something feels off.</p>
     </div>
   </div>
@@ -458,7 +456,7 @@
 <section id="tips">
   <div class="wrap tips-cols">
     <div>
-      <h2 class="sec-title display">Tyre pressure, actually explained</h2>
+      <h2 class="sec-title display reveal-right">Tyre pressure, actually explained</h2>
       <p>Under-inflated tyres overheat and wear unevenly. Over-inflated ones make for a harsher ride and wear the centre of the tread faster than the edges. Either way, you're losing tyre life and fuel economy.</p>
       <p>Check pressures cold — meaning before you've driven anywhere, not after a long trip when the tyres have heated up and the reading's skewed. Every 2–4 weeks is a good habit, spare included.</p>
       <p><strong>We'll check yours for free</strong>, whether you bought the tyres here or not.</p>
@@ -734,6 +732,21 @@ const vizWheelDesigns = [
     }, 5000);
   }
   restartAutoRotate();
+})();
+
+// ---------- Scroll reveal ----------
+(function(){
+  const revealEls = document.querySelectorAll('.reveal-left, .reveal-right');
+  if (!revealEls.length) return;
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => observer.observe(el));
 })();
 </script>
 
