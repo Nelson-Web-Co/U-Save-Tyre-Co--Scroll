@@ -256,10 +256,11 @@
   @media(max-width:700px){footer{padding-bottom:110px;}}
 
   .float-call{
+    display:none;
     position:fixed;bottom:26px;right:26px;z-index:200;
     width:56px;height:56px;border-radius:50%;
     background:var(--yellow);color:#fff;
-    display:flex;align-items:center;justify-content:center;
+    align-items:center;justify-content:center;
     text-decoration:none;
     box-shadow:0 8px 24px rgba(242,98,42,.45);
     transition:transform .2s ease;
@@ -268,7 +269,7 @@
   .float-call svg{width:24px;height:24px;}
 
   .back-to-top{
-    position:fixed;bottom:96px;right:26px;z-index:200;
+    position:fixed;bottom:26px;right:26px;z-index:200;
     width:44px;height:44px;border-radius:50%;
     background:var(--charcoal);color:#fff;
     border:1px solid rgba(255,255,255,.15);
@@ -283,7 +284,7 @@
   .back-to-top svg{width:20px;height:20px;}
 
   @media(max-width:700px){
-    .float-call{bottom:20px;right:16px;width:52px;height:52px;}
+    .float-call{display:flex;bottom:20px;right:16px;width:52px;height:52px;}
     .back-to-top{bottom:84px;right:18px;width:40px;height:40px;}
   }
   footer img{height:30px;margin:0 auto 14px;}
