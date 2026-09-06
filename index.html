@@ -106,10 +106,15 @@
   .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:start;}
   @media(max-width:860px){.about-grid{grid-template-columns:1fr;}}
   .about-grid p{margin-bottom:16px;color:#3a3733;}
-  .service-list{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:var(--line);border:1px solid var(--line);margin-top:10px;}
-  .service-list div{background:var(--concrete);padding:20px;}
-  .service-list div .num{font-family:'Archivo Black',sans-serif;font-size:12px;color:var(--yellow);display:block;margin-bottom:6px;}
-  .service-list div h4{font-size:15px;text-transform:uppercase;letter-spacing:0.3px;}
+  .offer-row{display:flex;flex-wrap:wrap;gap:26px;justify-content:center;margin-top:20px;}
+  .offer-item{width:130px;text-align:center;}
+  .offer-icon{
+    width:54px;height:54px;border-radius:50%;
+    background:var(--concrete);border:1.5px solid var(--yellow);
+    display:flex;align-items:center;justify-content:center;
+    font-size:22px;margin:0 auto 10px;
+  }
+  .offer-item h4{font-size:12.5px;text-transform:uppercase;letter-spacing:0.3px;color:var(--charcoal);font-weight:600;}
 
   /* GALLERY */
   .gallery-band{background:var(--charcoal);color:var(--white);}
@@ -306,21 +311,17 @@
 </div>
 
 <section id="about">
-  <div class="wrap about-grid">
-    <div>
-      <h2 class="sec-title display">Run by people who actually know tyres</h2>
-      <p>We've been fitting, balancing, and sorting alignments in Nelson for more than 25 years — long enough to know that the cheapest tyre isn't always the right one for your car.</p>
-      <p>Whatever you're driving — daily runabout, ute, trailer, or something a bit more special — we'll talk you through the actual options instead of just pointing at whatever's on special. If we wouldn't put it on our own cars, we won't sell it to you.</p>
-    </div>
-    <div>
-      <div class="service-list">
-        <div><span class="num">01</span><h4>Tyres — New &amp; Used</h4></div>
-        <div><span class="num">02</span><h4>Alloy Wheels</h4></div>
-        <div><span class="num">03</span><h4>Wheel Alignment</h4></div>
-        <div><span class="num">04</span><h4>Balancing</h4></div>
-        <div><span class="num">05</span><h4>Puncture Repair</h4></div>
-        <div><span class="num">06</span><h4>Battery Testing</h4></div>
-      </div>
+  <div class="wrap" style="max-width:820px;text-align:center;">
+    <h2 class="sec-title display">Run by people who actually know tyres</h2>
+    <p>We've been fitting, balancing, and sorting alignments in Nelson for more than 25 years — long enough to know that the cheapest tyre isn't always the right one for your car.</p>
+    <p>Whatever you're driving — daily runabout, ute, trailer, or something a bit more special — we'll talk you through the actual options instead of just pointing at whatever's on special. If we wouldn't put it on our own cars, we won't sell it to you.</p>
+    <div class="offer-row">
+      <div class="offer-item"><div class="offer-icon">🛞</div><h4>Tyres</h4></div>
+      <div class="offer-item"><div class="offer-icon">⚙️</div><h4>Alloy Wheels</h4></div>
+      <div class="offer-item"><div class="offer-icon">📐</div><h4>Alignment</h4></div>
+      <div class="offer-item"><div class="offer-icon">⚖️</div><h4>Balancing</h4></div>
+      <div class="offer-item"><div class="offer-icon">🔧</div><h4>Punctures</h4></div>
+      <div class="offer-item"><div class="offer-icon">🔋</div><h4>Batteries</h4></div>
     </div>
   </div>
 </section>
@@ -695,16 +696,18 @@ const vizWheelDesigns = [
   if (slides.length < 2) return;
 
   let current = 0;
+  let autoTimer = null;
   const dots = [];
   slides.forEach((_, i) => {
     const dot = document.createElement('div');
     dot.className = 'hero-dot' + (i === 0 ? ' active' : '');
-    dot.addEventListener('click', () => goToSlide(i));
+    dot.addEventListener('click', () => { goToSlide(i); restartAutoRotate(); });
     dotsContainer.appendChild(dot);
     dots.push(dot);
   });
 
   function goToSlide(index){
+    if (index === current) return;
     slides[current].classList.remove('active');
     dots[current].classList.remove('active');
     current = index;
@@ -715,9 +718,13 @@ const vizWheelDesigns = [
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (prefersReducedMotion) return; // leave first slide static, no auto-rotation, dots still clickable
 
-  setInterval(() => {
-    goToSlide((current + 1) % slides.length);
-  }, 5000);
+  function restartAutoRotate(){
+    if (autoTimer) clearInterval(autoTimer);
+    autoTimer = setInterval(() => {
+      goToSlide((current + 1) % slides.length);
+    }, 5000);
+  }
+  restartAutoRotate();
 })();
 </script>
 
