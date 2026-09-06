@@ -51,11 +51,13 @@
 
   /* HERO — full-height rotating photo background, centered content */
   .hero{
-    position:relative;min-height:calc(100vh - 76px);display:flex;align-items:center;justify-content:center;
+    position:relative;min-height:60vh;display:flex;align-items:center;justify-content:center;
     overflow:hidden;background:var(--charcoal);text-align:center;
   }
+  @media(max-width:700px){.hero{min-height:70vh;}}
   .hero-slide{
-    position:absolute;inset:0;background-size:cover;background-position:center 65%;
+    position:absolute;inset:0;background-size:contain;background-repeat:no-repeat;
+    background-position:center center;background-color:var(--charcoal);
     opacity:0;transition:opacity 1.6s ease;
   }
   .hero-slide.active{opacity:1;}
@@ -283,9 +285,7 @@
 </header>
 
 <div class="hero" id="hero-rotator">
-  <div class="hero-slide active" style="background-image:url('hero_2.jpg');"></div>
-  <div class="hero-slide" style="background-image:url('hero_9.jpg');"></div>
-  <div class="hero-slide" style="background-image:url('hero_5.jpg');"></div>
+  <div class="hero-slide active" style="background-image:url('hero_5.jpg');"></div>
   <div class="hero-slide" style="background-image:url('hero_3.jpg');"></div>
   <div class="hero-slide" style="background-image:url('hero_8.jpg');"></div>
   <div class="hero-copy">
@@ -329,17 +329,14 @@
     </div>
     <div class="story-text-col">
       <div class="story-block">
-        <div class="story-num">01</div>
         <h3 class="display">A real showroom, not just a website</h3>
         <p>Come in and actually see the wheels before you buy — our showroom's stocked with a huge range of mag wheels on display, not just photos online.</p>
       </div>
       <div class="story-block">
-        <div class="story-num">02</div>
         <h3 class="display">We fit what we sell</h3>
         <p>Everything you see in store gets fitted and balanced right here by our own team — no sending you off somewhere else to get it done.</p>
       </div>
       <div class="story-block">
-        <div class="story-num">03</div>
         <h3 class="display">Straight answers, every time</h3>
         <p>If a cheaper option is genuinely fine for your car, we'll tell you. If it's not, we'll tell you that too — no upselling, just honest advice.</p>
       </div>
@@ -428,17 +425,14 @@
 <section class="parallax-section">
   <div class="parallax-inner">
     <div class="story-block">
-      <div class="story-num">01</div>
       <h3 class="display">Why alignment actually matters</h3>
       <p>A wheel that's out of alignment wears unevenly, pulls slightly on the road, and quietly costs you fuel — most people don't notice until the tyre's already half worn on one edge.</p>
     </div>
     <div class="story-block">
-      <div class="story-num">02</div>
       <h3 class="display">It shifts more than you'd think</h3>
       <p>Factory alignment settings shift over time: kerbs, potholes, and worn suspension parts all knock it out gradually. Uneven wear on the inside or outside of a tyre is usually the giveaway.</p>
     </div>
     <div class="story-block">
-      <div class="story-num">03</div>
       <div class="tip-tag">Worth Knowing</div>
       <h3 class="display">Cheap now, expensive later</h3>
       <p>It's a cheap check relative to what it saves you in tyre life — worth getting done yearly, not just when something feels off.</p>
