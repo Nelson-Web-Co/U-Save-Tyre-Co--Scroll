@@ -51,12 +51,13 @@
 
   /* HERO — full-height rotating photo background, centered content */
   .hero{
-    position:relative;min-height:60vh;display:flex;align-items:center;justify-content:center;
+    position:relative;width:100%;height:50vw;max-height:640px;min-height:400px;
+    display:flex;align-items:center;justify-content:center;
     overflow:hidden;background:var(--charcoal);text-align:center;
   }
-  @media(max-width:700px){.hero{min-height:70vh;}}
+  @media(max-width:700px){.hero{height:auto;min-height:70vh;max-height:none;}}
   .hero-slide{
-    position:absolute;inset:0;background-size:contain;background-repeat:no-repeat;
+    position:absolute;inset:0;background-size:cover;background-repeat:no-repeat;
     background-position:center center;background-color:var(--charcoal);
     opacity:0;transition:opacity 1.6s ease;
   }
@@ -288,6 +289,10 @@
   <div class="hero-slide active" style="background-image:url('hero_5.jpg');"></div>
   <div class="hero-slide" style="background-image:url('hero_3.jpg');"></div>
   <div class="hero-slide" style="background-image:url('hero_8.jpg');"></div>
+  <div class="hero-slide" style="background-image:url('hero_hotrod.jpg');"></div>
+  <div class="hero-slide" style="background-image:url('hero_landrover.jpg');"></div>
+  <div class="hero-slide" style="background-image:url('hero_cx5.jpg');"></div>
+  <div class="hero-slide" style="background-image:url('hero_hilux2.jpg');"></div>
   <div class="hero-copy">
     <div class="tagcode">★ NELSON &amp; WAIKATO — EST. 25+ YEARS</div>
     <h1 class="display">Tyres and mags<br>done right.</h1>
